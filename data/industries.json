@@ -1,0 +1,405 @@
+{
+  "dental": {
+    "label": "Стоматология",
+    "ru_keywords": ["стоматология", "лечение зубов", "имплантация", "стоматолог", "зубная клиника", "ортодонтия"],
+    "tone": "Заботливо и профессионально, без страха перед лечением",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "process", "team", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "light", "primary": "#0F4C5C", "accent": "#2EC4B6", "bg": "#F7FBFC" },
+    "fonts_hint": { "display": "Manrope", "body": "Manrope" },
+    "service_items": [
+      { "title": "Лечение кариеса", "desc": "Удаляем поражённые ткани и ставим пломбу за один приём", "price_range": [3500, 9000], "icon": "tooth" },
+      { "title": "Имплантация зубов", "desc": "Восстанавливаем зуб от корня имплантом с пожизненной гарантией на систему", "price_range": [35000, 75000], "icon": "shield" },
+      { "title": "Профессиональная чистка", "desc": "Снимаем налёт и камень ультразвуком и Air Flow", "price_range": [4000, 8000], "icon": "sparkle" },
+      { "title": "Брекеты и элайнеры", "desc": "Исправляем прикус и выравниваем зубной ряд по индивидуальному плану", "price_range": [60000, 180000], "icon": "star" },
+      { "title": "Отбеливание зубов", "desc": "Осветляем эмаль на несколько тонов без вреда для зубов", "price_range": [12000, 25000], "icon": "award" },
+      { "title": "Лечение под наркозом", "desc": "Помогаем пациентам со страхом и детям пройти лечение во сне", "price_range": [15000, 40000], "icon": "heart" }
+    ],
+    "roles": ["Главный врач, стоматолог-имплантолог", "Стоматолог-терапевт", "Ортодонт", "Стоматолог-хирург", "Гигиенист", "Администратор клиники"],
+    "review_snippets": [
+      "Боялась идти к стоматологу годами, а тут вылечили три зуба и ни разу не было больно. Спасибо доктору за терпение.",
+      "Поставил два импланта, всё прижилось отлично. Врач честно объяснил все варианты и цены заранее.",
+      "Привожу сюда обоих детей. С малышами находят общий язык, после приёма просятся ещё.",
+      "Сделала чистку и отбеливание перед свадьбой, улыбка преобразилась. Записали быстро, без очередей.",
+      "Понравилось, что показали снимок на экране и всё разъяснили. Никаких лишних процедур не навязывали.",
+      "Брекеты ношу год, результат уже виден. Каждый визит проходит спокойно и по времени."
+    ],
+    "image_prompts": {
+      "hero": "Bright modern dental clinic interior, Slavic female dentist in clean uniform smiling at patient, Moscow private clinic, soft daylight, no text",
+      "about": "Team of Slavic dentists in a contemporary Moscow dental office, friendly atmosphere, professional photography, no text",
+      "service": "Close-up of Slavic dentist hands using dental tools on smiling patient, sterile bright environment, shallow depth of field, no text",
+      "portfolio": "Before and after of healthy white smile, Slavic young woman happy in dental chair, clean clinical light, no text"
+    }
+  },
+  "clinic": {
+    "label": "Медицинский центр",
+    "ru_keywords": ["медицинский центр", "клиника", "приём врача", "диагностика", "анализы", "узи"],
+    "tone": "Внимательно к здоровью, доказательная медицина простым языком",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "process", "team", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "light", "primary": "#1B5299", "accent": "#3CCFCF", "bg": "#F6F9FC" },
+    "fonts_hint": { "display": "Manrope", "body": "Manrope" },
+    "service_items": [
+      { "title": "Приём терапевта", "desc": "Осмотр, постановка диагноза и план лечения за 30 минут", "price_range": [2000, 4500], "icon": "briefcase" },
+      { "title": "УЗИ-диагностика", "desc": "Исследование органов на аппарате экспертного класса с расшифровкой", "price_range": [1800, 5500], "icon": "zap" },
+      { "title": "Анализы и лаборатория", "desc": "Берём кровь без очереди, результаты приходят на почту", "price_range": [500, 8000], "icon": "check" },
+      { "title": "Узкие специалисты", "desc": "Кардиолог, невролог, эндокринолог и ещё 15 направлений", "price_range": [2500, 5000], "icon": "users" },
+      { "title": "Чек-ап здоровья", "desc": "Комплексное обследование организма за один день", "price_range": [9000, 28000], "icon": "shield" },
+      { "title": "Вызов врача на дом", "desc": "Терапевт приедет в день обращения с нужным оборудованием", "price_range": [4000, 7000], "icon": "home" }
+    ],
+    "roles": ["Главный врач", "Врач-терапевт", "Врач УЗИ-диагностики", "Кардиолог", "Невролог", "Старшая медсестра"],
+    "review_snippets": [
+      "Записалась на чек-ап, за один день прошла всех врачей и сдала анализы. Очень удобно, не нужно бегать по разным местам.",
+      "Терапевт внимательно выслушал, назначил только нужные обследования. Чувствуется грамотный подход.",
+      "Делали УЗИ ребёнку, врач спокойный и аккуратный, всё подробно объяснил по результатам.",
+      "Вызывала врача на дом при высокой температуре, приехал через два часа, помог быстро.",
+      "Анализы готовы вовремя, пришли на почту с пояснениями. Кровь взяли с первого раза, без синяков.",
+      "Хороший кардиолог, разобрался с давлением, подобрал лечение. Спустя месяц самочувствие заметно лучше."
+    ],
+    "image_prompts": {
+      "hero": "Modern Moscow medical center reception, Slavic doctor in white coat greeting patient, calm blue tones, daylight, no text",
+      "about": "Group of Slavic medical professionals in a bright clinic corridor, confident and friendly, professional photo, no text",
+      "service": "Slavic doctor performing ultrasound on patient in a clean exam room, modern equipment, soft lighting, no text",
+      "portfolio": "Clean laboratory with Slavic lab technician analyzing blood samples, modern medical interior, no text"
+    }
+  },
+  "restaurant": {
+    "label": "Ресторан",
+    "ru_keywords": ["ресторан", "кухня", "бронь стола", "банкеты", "меню", "доставка еды"],
+    "tone": "Тепло и со вкусом, приглашаем за стол как к себе домой",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "portfolio", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "dark", "primary": "#1C1410", "accent": "#C75B39", "bg": "#221A14" },
+    "fonts_hint": { "display": "Prata", "body": "Manrope" },
+    "service_items": [
+      { "title": "Ужин в зале", "desc": "Авторская кухня, сезонное меню и винная карта от сомелье", "price_range": [1500, 4000], "icon": "star" },
+      { "title": "Бронирование стола", "desc": "Закрепим лучший столик к вашему приходу за пару минут", "price_range": [0, 0], "icon": "check" },
+      { "title": "Банкеты и торжества", "desc": "Организуем свадьбу или юбилей с отдельным залом и меню", "price_range": [40000, 300000], "icon": "users" },
+      { "title": "Бизнес-ланч", "desc": "Три блюда по будням с 12 до 16 по специальной цене", "price_range": [550, 950], "icon": "clock" },
+      { "title": "Доставка блюд", "desc": "Привезём горячие блюда из меню по району в течение часа", "price_range": [600, 3000], "icon": "truck" },
+      { "title": "Кейтеринг", "desc": "Накроем стол на вашем мероприятии с обслуживанием", "price_range": [25000, 200000], "icon": "briefcase" }
+    ],
+    "roles": ["Шеф-повар", "Су-шеф", "Сомелье", "Бар-менеджер", "Метрдотель", "Управляющий рестораном"],
+    "review_snippets": [
+      "Отмечали годовщину, посадили за уютный столик у окна, кухня выше всяких похвал. Вернёмся обязательно.",
+      "Шеф готовит честно и вкусно, утка с вишнёвым соусом запомнилась надолго. Атмосфера тёплая, музыка ненавязчивая.",
+      "Заказывали банкет на 30 человек, всё прошло идеально. Отдельный зал, внимательные официанты, гости остались сыты и довольны.",
+      "Беру бизнес-ланч почти каждый день, порции большие, цена честная, готовят быстро.",
+      "Доставка приехала горячей и красиво упакованной, как будто в зале подали. Приятно удивлены.",
+      "Сомелье подобрал вино под каждое блюдо, вечер удался. Сервис на уровне дорогих мест, а счёт адекватный."
+    ],
+    "image_prompts": {
+      "hero": "Warm cozy restaurant interior at evening, Slavic chef plating a dish, candlelight, terracotta and dark wood tones, Moscow fine dining, no text",
+      "about": "Slavic chef and kitchen team in an open kitchen, focused and warm atmosphere, professional photo, no text",
+      "service": "Beautifully plated gourmet dish on a dark wooden table, warm restaurant lighting, shallow depth of field, no text",
+      "portfolio": "Elegant set restaurant table for a celebration, Slavic guests toasting with wine, warm ambient light, no text"
+    }
+  },
+  "law": {
+    "label": "Юридическая компания",
+    "ru_keywords": ["юрист", "адвокат", "юридические услуги", "защита в суде", "консультация юриста", "сопровождение сделок"],
+    "tone": "Уверенно и сдержанно, на стороне клиента до результата",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "process", "team", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "dark", "primary": "#14213D", "accent": "#C8A24B", "bg": "#0F1729" },
+    "fonts_hint": { "display": "Playfair Display", "body": "Inter" },
+    "service_items": [
+      { "title": "Консультация юриста", "desc": "Разберём вашу ситуацию и предложим план действий", "price_range": [2000, 6000], "icon": "briefcase" },
+      { "title": "Защита в суде", "desc": "Представляем интересы в судах всех инстанций до решения", "price_range": [30000, 250000], "icon": "shield" },
+      { "title": "Сопровождение сделок", "desc": "Проверяем документы и оформляем куплю-продажу без рисков", "price_range": [15000, 90000], "icon": "check" },
+      { "title": "Споры с банками", "desc": "Снижаем долг, оспариваем проценты и навязанные страховки", "price_range": [20000, 120000], "icon": "award" },
+      { "title": "Семейные дела", "desc": "Развод, раздел имущества, алименты и определение места жительства детей", "price_range": [15000, 80000], "icon": "users" },
+      { "title": "Банкротство физлиц", "desc": "Законно списываем долги по кредитам с полным сопровождением процедуры", "price_range": [80000, 150000], "icon": "star" }
+    ],
+    "roles": ["Управляющий партнёр", "Адвокат по уголовным делам", "Юрист по гражданскому праву", "Юрист по семейным спорам", "Налоговый консультант", "Помощник юриста"],
+    "review_snippets": [
+      "Выиграли мой трудовой спор с работодателем, вернули зарплату и компенсацию. Вели дело спокойно и уверенно.",
+      "Помогли пройти процедуру банкротства, списали долги по кредитам. Каждый шаг объясняли простым языком.",
+      "Сопровождали покупку квартиры, нашли проблему в документах продавца и уберегли от ошибки. Очень благодарен.",
+      "Развод прошёл цивилизованно, имущество разделили справедливо, дети остались со мной. Спасибо за поддержку.",
+      "Оспорили навязанную страховку по кредиту, банк вернул деньги. Думал, это невозможно, а юристы добились своего.",
+      "Чёткие, без лишних обещаний. Сразу честно сказали о перспективах дела и в итоге выиграли суд."
+    ],
+    "image_prompts": {
+      "hero": "Confident Slavic lawyer in a tailored suit in a modern Moscow law office, deep navy and gold tones, bookshelf background, no text",
+      "about": "Team of Slavic legal professionals in a meeting room, serious and trustworthy, elegant office, professional photo, no text",
+      "service": "Slavic lawyer and client signing documents at a polished desk, warm gold accent light, no text",
+      "portfolio": "Elegant law firm interior with law books and dark wood, navy and gold palette, no text"
+    }
+  },
+  "construction": {
+    "label": "Строительная компания",
+    "ru_keywords": ["строительство домов", "ремонт квартир", "отделочные работы", "фундамент", "строительная бригада", "проектирование"],
+    "tone": "По-деловому и надёжно, сдаём в срок и по смете",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "process", "portfolio", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "dark", "primary": "#2B2D31", "accent": "#F4801A", "bg": "#1E2024" },
+    "fonts_hint": { "display": "Oswald", "body": "PT Sans" },
+    "service_items": [
+      { "title": "Строительство домов", "desc": "Возводим коттеджи из газобетона, бруса и кирпича от фундамента до кровли", "price_range": [2500000, 12000000], "icon": "home" },
+      { "title": "Ремонт квартир", "desc": "Делаем капитальный и косметический ремонт по фиксированной смете", "price_range": [400000, 3000000], "icon": "wrench" },
+      { "title": "Отделочные работы", "desc": "Стяжка, штукатурка, плитка, малярные и потолочные работы", "price_range": [800, 4500], "icon": "check" },
+      { "title": "Проектирование", "desc": "Разрабатываем проект дома с расчётом нагрузок и инженерией", "price_range": [60000, 300000], "icon": "briefcase" },
+      { "title": "Фундаментные работы", "desc": "Заливаем ленту, плиту и сваи с геологией участка", "price_range": [350000, 1500000], "icon": "shield" },
+      { "title": "Кровля и фасад", "desc": "Монтируем кровлю и утепляем фасад с гарантией на работы", "price_range": [250000, 1800000], "icon": "award" }
+    ],
+    "roles": ["Главный инженер", "Прораб", "Архитектор-проектировщик", "Сметчик", "Бригадир отделочников", "Менеджер по объектам"],
+    "review_snippets": [
+      "Построили нам дом за один сезон, уложились в смету и сроки. Прораб всегда был на связи и держал в курсе.",
+      "Сделали ремонт двушки под чистовую, работали аккуратно, мусор вывозили сами. Результатом довольны.",
+      "Заливали фундамент на сложном участке, сделали геологию и всё рассчитали. Дом стоит уже три года без трещин.",
+      "Понравилось, что смета была подробная и без скрытых доплат в процессе. Цена в начале и в конце совпала.",
+      "Бригада отделочников ровно вывела стены и положила плитку идеально. Соседи теперь спрашивают контакты.",
+      "Перекрыли крышу за неделю, дали гарантию и чек. Зимой ни одной протечки, всё держится."
+    ],
+    "image_prompts": {
+      "hero": "Slavic construction foreman in helmet and vest reviewing blueprints at a building site near Moscow, graphite and orange tones, daylight, no text",
+      "about": "Team of Slavic construction workers in safety gear at a residential building site, confident, professional photo, no text",
+      "service": "Slavic builder laying bricks or pouring concrete, construction tools, industrial palette, no text",
+      "portfolio": "Newly built modern private house in a Moscow region settlement, clean facade, sunny day, no text"
+    }
+  },
+  "beauty": {
+    "label": "Салон красоты",
+    "ru_keywords": ["салон красоты", "маникюр", "стрижка", "косметология", "окрашивание волос", "уход за лицом"],
+    "tone": "Нежно и со вкусом, подчёркиваем вашу природную красоту",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "portfolio", "team", "reviews", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "light", "primary": "#8C5A6B", "accent": "#C9A86A", "bg": "#FBF4F2" },
+    "fonts_hint": { "display": "Playfair Display", "body": "Inter" },
+    "service_items": [
+      { "title": "Маникюр и педикюр", "desc": "Аппаратная обработка, покрытие гель-лаком и уход за кожей", "price_range": [1500, 4500], "icon": "sparkle" },
+      { "title": "Стрижка и укладка", "desc": "Подбираем форму под тип волос и лица, делаем укладку", "price_range": [1200, 4000], "icon": "scissors" },
+      { "title": "Окрашивание волос", "desc": "Сложные техники, тонирование и уход для блеска цвета", "price_range": [3500, 12000], "icon": "star" },
+      { "title": "Уход за лицом", "desc": "Чистка, пилинги и массаж для свежей и сияющей кожи", "price_range": [2500, 8000], "icon": "heart" },
+      { "title": "Брови и ресницы", "desc": "Коррекция, окрашивание, ламинирование и наращивание", "price_range": [1000, 3500], "icon": "award" },
+      { "title": "Макияж", "desc": "Дневной, вечерний и свадебный образ под событие", "price_range": [2500, 9000], "icon": "camera" }
+    ],
+    "roles": ["Топ-стилист", "Колорист", "Мастер маникюра", "Косметолог-эстетист", "Бровист", "Визажист"],
+    "review_snippets": [
+      "Хожу к своему мастеру уже второй год, окрашивание держится прекрасно, волосы не испорчены. Очень бережный подход.",
+      "Сделали свадебный образ, макияж продержался весь день и на всех фото идеально. Спасибо за чуткость.",
+      "Маникюр аккуратный, держится три недели без сколов. Атмосфера в салоне уютная, можно расслабиться.",
+      "После чистки лица кожа как новая, ни раздражения, ни покраснений. Косметолог честно рассказала про уход.",
+      "Ламинирование бровей преобразило лицо, теперь не крашу их каждое утро. Записаться легко через сообщение.",
+      "Стилист подобрал стрижку под мой типаж, наконец-то укладка занимает пять минут. Очень довольна результатом."
+    ],
+    "image_prompts": {
+      "hero": "Elegant beauty salon interior, Slavic stylist styling client's hair, rose and gold tones, soft natural light, Moscow salon, no text",
+      "about": "Team of Slavic beauty masters in a stylish salon, warm friendly mood, professional photo, no text",
+      "service": "Slavic manicurist working on client's nails, soft pink palette, clean modern salon, shallow depth of field, no text",
+      "portfolio": "Slavic young woman with fresh hair color and glowing makeup, elegant beauty portrait, soft light, no text"
+    }
+  },
+  "autoservice": {
+    "label": "Автосервис",
+    "ru_keywords": ["автосервис", "ремонт авто", "то автомобиля", "шиномонтаж", "диагностика двигателя", "замена масла"],
+    "tone": "Честно и по делу, чиним так, как делали бы себе",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "process", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "dark", "primary": "#23262B", "accent": "#E63946", "bg": "#191B1F" },
+    "fonts_hint": { "display": "Oswald", "body": "PT Sans" },
+    "service_items": [
+      { "title": "Компьютерная диагностика", "desc": "Считываем ошибки и находим причину неисправности за 30 минут", "price_range": [1000, 3000], "icon": "zap" },
+      { "title": "Техническое обслуживание", "desc": "Замена масла, фильтров и жидкостей по регламенту авто", "price_range": [3000, 12000], "icon": "wrench" },
+      { "title": "Ремонт двигателя", "desc": "Капитальный и текущий ремонт ДВС с гарантией на работы", "price_range": [25000, 150000], "icon": "shield" },
+      { "title": "Ремонт ходовой", "desc": "Меняем стойки, рычаги, ступицы и сайлентблоки", "price_range": [4000, 35000], "icon": "check" },
+      { "title": "Шиномонтаж и балансировка", "desc": "Сезонная переобувка с правкой дисков и балансировкой", "price_range": [2000, 6000], "icon": "clock" },
+      { "title": "Ремонт тормозной системы", "desc": "Замена колодок, дисков и прокачка тормозов", "price_range": [3500, 20000], "icon": "award" }
+    ],
+    "roles": ["Старший автомеханик", "Диагност-электрик", "Моторист", "Специалист по ходовой", "Шиномонтажник", "Мастер-приёмщик"],
+    "review_snippets": [
+      "Нашли причину стука, который три сервиса до этого не могли определить. Починили за день, цена честная.",
+      "Делаю здесь ТО уже несколько лет, ничего лишнего не навязывают, показывают изношенные детали. Доверяю полностью.",
+      "Поменяли стойки и рычаги, машина поехала как новая. Запчасти предложили на выбор по бюджету.",
+      "Приехал с горящим чеком, продиагностировали бесплатно при ремонте, всё объяснили по-человечески.",
+      "Переобули колёса быстро, без очереди по записи. Диски выправили, биения руля больше нет.",
+      "Капиталили двигатель, дали гарантию и чек на работы. Прошёл уже 20 тысяч километров без проблем."
+    ],
+    "image_prompts": {
+      "hero": "Slavic auto mechanic in uniform working under a car on a lift in a clean modern Moscow garage, red and graphite tones, no text",
+      "about": "Team of Slavic auto mechanics in a well-equipped service station, confident, professional photo, no text",
+      "service": "Slavic mechanic using diagnostic scanner on a car engine, industrial garage lighting, no text",
+      "portfolio": "Clean modern car service bay with cars on lifts, organized tools, professional interior, no text"
+    }
+  },
+  "logistics": {
+    "label": "Транспортно-логистическая компания",
+    "ru_keywords": ["грузоперевозки", "доставка грузов", "логистика", "складское хранение", "транспортная компания", "переезд"],
+    "tone": "Чётко и предсказуемо, груз доедет вовремя и целым",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "process", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "light", "primary": "#0D3B66", "accent": "#F4A310", "bg": "#F4F7FB" },
+    "fonts_hint": { "display": "Montserrat", "body": "Inter" },
+    "service_items": [
+      { "title": "Грузоперевозки по России", "desc": "Доставляем фуры и сборные грузы во все регионы с трекингом", "price_range": [15000, 250000], "icon": "truck" },
+      { "title": "Городская доставка", "desc": "Развозим грузы по Москве и области в день заказа", "price_range": [1500, 12000], "icon": "clock" },
+      { "title": "Складское хранение", "desc": "Принимаем, храним и отгружаем товар с учётом остатков", "price_range": [500, 50000], "icon": "building" },
+      { "title": "Переезды офисов и квартир", "desc": "Грузчики, упаковка и транспорт под ваш объём", "price_range": [5000, 80000], "icon": "home" },
+      { "title": "Экспедирование", "desc": "Сопровождаем груз и оформляем документы на всех этапах", "price_range": [3000, 30000], "icon": "check" },
+      { "title": "Доставка сборных грузов", "desc": "Объединяем малые партии и снижаем стоимость отправки", "price_range": [2000, 60000], "icon": "briefcase" }
+    ],
+    "roles": ["Руководитель отдела логистики", "Логист-диспетчер", "Менеджер по перевозкам", "Заведующий складом", "Водитель-экспедитор", "Специалист по документообороту"],
+    "review_snippets": [
+      "Возим продукцию по всей стране уже больше года, груз всегда приходит в срок и без повреждений. Диспетчеры на связи круглосуточно.",
+      "Заказывали переезд офиса в выходные, собрали и перевезли всё за день. Ничего не разбили, технику упаковали бережно.",
+      "Удобно отслеживать машину по трекеру, всегда знаю, где мой груз. Документы оформляют без задержек.",
+      "Храним сезонный товар на их складе, остатки видим в личном кабинете онлайн. Отгрузки делают быстро.",
+      "Сборный груз обошёлся заметно дешевле отдельной машины, при этом доехал в срок. Будем сотрудничать дальше.",
+      "Цену назвали сразу и без скрытых доплат. Водитель приехал вовремя, помог с погрузкой."
+    ],
+    "image_prompts": {
+      "hero": "Logistics fleet of trucks at a Moscow distribution terminal, Slavic dispatcher with tablet, blue and amber tones, daylight, no text",
+      "about": "Team of Slavic logistics workers in a warehouse with shelves and forklifts, professional photo, no text",
+      "service": "Slavic warehouse worker scanning packages on shelving, modern logistics interior, organized boxes, no text",
+      "portfolio": "Cargo truck on a Russian highway at sunrise, clean corporate look, blue sky, no text"
+    }
+  },
+  "realestate": {
+    "label": "Агентство недвижимости",
+    "ru_keywords": ["агентство недвижимости", "купить квартиру", "продать квартиру", "аренда жилья", "риелтор", "ипотека"],
+    "tone": "Спокойно и надёжно, проведём через сделку без нервов",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "process", "portfolio", "team", "reviews", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "light", "primary": "#1A3A5C", "accent": "#B68A4E", "bg": "#F5F7FA" },
+    "fonts_hint": { "display": "Playfair Display", "body": "Inter" },
+    "service_items": [
+      { "title": "Покупка квартиры", "desc": "Подберём варианты под бюджет и проверим юридическую чистоту", "price_range": [50000, 300000], "icon": "home" },
+      { "title": "Продажа недвижимости", "desc": "Оценим, разместим рекламу и проведём сделку до денег на счёте", "price_range": [50000, 400000], "icon": "briefcase" },
+      { "title": "Аренда жилья", "desc": "Найдём арендатора или квартиру и оформим договор", "price_range": [20000, 80000], "icon": "check" },
+      { "title": "Ипотечное сопровождение", "desc": "Поможем одобрить ипотеку в нескольких банках на лучших условиях", "price_range": [15000, 60000], "icon": "shield" },
+      { "title": "Загородная недвижимость", "desc": "Дома, участки и таунхаусы в Подмосковье с выездом на показ", "price_range": [60000, 500000], "icon": "leaf" },
+      { "title": "Юридическая проверка", "desc": "Проверяем документы, историю объекта и снимаем риски сделки", "price_range": [10000, 40000], "icon": "award" }
+    ],
+    "roles": ["Руководитель агентства", "Риелтор по вторичному жилью", "Специалист по новостройкам", "Ипотечный брокер", "Юрист по недвижимости", "Эксперт по загородной недвижимости"],
+    "review_snippets": [
+      "Продали нашу квартиру за месяц по хорошей цене. Риелтор сам организовал показы и взял все переговоры на себя.",
+      "Помогли купить первую квартиру и оформить ипотеку, одобрили ставку ниже, чем я нашёл сам. Сделка прошла спокойно.",
+      "Проверили юридическую историю объекта и нашли неприятный нюанс, из-за которого мы отказались от покупки. Спасибо за честность.",
+      "Подобрали дом в Подмосковье ровно под наши пожелания и бюджет. Возили на показы, всё показали без спешки.",
+      "Сдали квартиру надёжным жильцам за неделю, договор составили грамотно. Теперь спокойна за своё жильё.",
+      "Вели сделку профессионально, объясняли каждый этап. Ни одного скрытого платежа, всё прозрачно."
+    ],
+    "image_prompts": {
+      "hero": "Slavic real estate agent handing keys to a happy young couple in a bright Moscow apartment, navy and gold tones, daylight, no text",
+      "about": "Team of Slavic real estate agents in a modern office, confident and welcoming, professional photo, no text",
+      "service": "Slavic agent showing an apartment to clients, modern interior, warm light, no text",
+      "portfolio": "Bright modern Moscow apartment living room, stylish interior, large windows, no text"
+    }
+  },
+  "fitness": {
+    "label": "Фитнес-клуб",
+    "ru_keywords": ["фитнес клуб", "тренажёрный зал", "групповые тренировки", "персональный тренер", "абонемент", "йога"],
+    "tone": "Энергично и поддерживающе, приведём к форме без надрыва",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "portfolio", "team", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "dark", "primary": "#16181C", "accent": "#C6F432", "bg": "#101216" },
+    "fonts_hint": { "display": "Oswald", "body": "PT Sans" },
+    "service_items": [
+      { "title": "Абонемент в зал", "desc": "Безлимитный доступ к тренажёрам, зонам кардио и душевым", "price_range": [3000, 12000], "icon": "dumbbell" },
+      { "title": "Персональный тренер", "desc": "Программа под вашу цель и контроль техники на каждой тренировке", "price_range": [1500, 4000], "icon": "users" },
+      { "title": "Групповые тренировки", "desc": "Силовые, функциональные и танцевальные классы по расписанию", "price_range": [600, 1500], "icon": "zap" },
+      { "title": "Йога и стретчинг", "desc": "Занятия на гибкость, дыхание и расслабление в отдельном зале", "price_range": [700, 1600], "icon": "heart" },
+      { "title": "Бассейн", "desc": "Свободное плавание и аквааэробика под руководством инструктора", "price_range": [4000, 9000], "icon": "leaf" },
+      { "title": "Составление программы питания", "desc": "Рацион под цель от нутрициолога с пересчётом по результатам", "price_range": [3000, 8000], "icon": "check" }
+    ],
+    "roles": ["Управляющий клубом", "Персональный тренер", "Инструктор групповых программ", "Тренер по йоге", "Инструктор бассейна", "Нутрициолог"],
+    "review_snippets": [
+      "За полгода с тренером сбросила 12 килограммов и впервые полюбила спорт. Программу составили реально под меня.",
+      "Большой выбор групповых занятий, всегда найду класс по настроению. Тренеры заряжают энергией.",
+      "Зал чистый, оборудование новое, в час пик хватает тренажёров на всех. Раздевалки и душевые в порядке.",
+      "Хожу на йогу после работы, голова разгружается, спина перестала болеть. Инструктор внимательная.",
+      "Понравилось, что при покупке абонемента дали бесплатную вводную тренировку и замеры. Никакого давления на допуслуги.",
+      "Бассейн отличный, вода чистая, дорожек хватает. Совмещаю плавание с залом, самочувствие супер."
+    ],
+    "image_prompts": {
+      "hero": "Slavic athlete training with weights in a modern dark gym, neon lime accent light, Moscow fitness club, energetic mood, no text",
+      "about": "Team of Slavic fitness trainers in a stylish gym, motivating and friendly, professional photo, no text",
+      "service": "Slavic personal trainer coaching a client on technique, dynamic gym lighting, dark palette, no text",
+      "portfolio": "Modern fitness club interior with rows of equipment, dark tones with lime accents, no text"
+    }
+  },
+  "education": {
+    "label": "Образовательный центр",
+    "ru_keywords": ["курсы", "обучение", "подготовка к егэ", "репетитор", "образовательный центр", "иностранные языки"],
+    "tone": "Поддерживающе и понятно, объясним так, что захочется учиться",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "process", "team", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "light", "primary": "#3A2D7D", "accent": "#F4A310", "bg": "#F6F5FC" },
+    "fonts_hint": { "display": "Montserrat", "body": "Inter" },
+    "service_items": [
+      { "title": "Подготовка к ЕГЭ и ОГЭ", "desc": "Разбираем формат экзамена и закрываем пробелы по предметам", "price_range": [800, 2500], "icon": "graduation" },
+      { "title": "Иностранные языки", "desc": "Английский, немецкий и китайский в группах и индивидуально", "price_range": [600, 2000], "icon": "users" },
+      { "title": "Курсы программирования", "desc": "Python, веб-разработка и аналитика с практикой на проектах", "price_range": [15000, 60000], "icon": "zap" },
+      { "title": "Репетиторы по предметам", "desc": "Индивидуальные занятия по школьной программе и подтягивание оценок", "price_range": [700, 2200], "icon": "briefcase" },
+      { "title": "Подготовка к школе", "desc": "Развиваем чтение, счёт и усидчивость у будущих первоклассников", "price_range": [500, 1500], "icon": "star" },
+      { "title": "Курсы для взрослых", "desc": "Новая профессия, повышение квалификации и мягкие навыки", "price_range": [10000, 50000], "icon": "award" }
+    ],
+    "roles": ["Директор центра", "Методист", "Преподаватель математики", "Преподаватель английского", "Преподаватель информатики", "Куратор учебных групп"],
+    "review_snippets": [
+      "Сын подтянул математику с тройки до твёрдой четвёрки за полгода. Преподаватель объясняет так, что наконец стало понятно.",
+      "Готовилась к ЕГЭ по русскому, сдала на 90 баллов и поступила на бюджет. Спасибо за разбор каждого задания.",
+      "Прошёл курс по Python с нуля, собрал портфолио и нашёл первую работу стажёром. Практики было много.",
+      "Дочка ходит на английский в мини-группе, говорит свободнее и без стеснения. Атмосфера тёплая, дети не устают.",
+      "Удобно, что есть расписание и кураторы напоминают о занятиях. Чувствуется системный подход к обучению.",
+      "Готовили ребёнка к школе, пошёл уже умея читать и считать. Адаптация прошла легко, учитель хвалит."
+    ],
+    "image_prompts": {
+      "hero": "Slavic teacher helping students in a bright modern classroom in Moscow, purple and amber tones, daylight, engaged mood, no text",
+      "about": "Team of Slavic teachers in a friendly education center, welcoming, professional photo, no text",
+      "service": "Slavic students studying together at a table with laptops and books, bright classroom, no text",
+      "portfolio": "Modern educational center interior with study zones, light and airy, no text"
+    }
+  },
+  "b2b": {
+    "label": "B2B-услуги для бизнеса",
+    "ru_keywords": ["услуги для бизнеса", "аутсорсинг", "автоматизация бизнеса", "консалтинг", "корпоративные решения", "сопровождение бизнеса"],
+    "tone": "Деловой партнёр, говорим цифрами и результатом",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "process", "pricing", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "dark", "primary": "#11203A", "accent": "#2D8CFF", "bg": "#0E1729" },
+    "fonts_hint": { "display": "Montserrat", "body": "Inter" },
+    "service_items": [
+      { "title": "Бухгалтерский аутсорсинг", "desc": "Ведём учёт, отчётность и зарплату вместо штатной бухгалтерии", "price_range": [8000, 80000], "icon": "briefcase" },
+      { "title": "Автоматизация процессов", "desc": "Внедряем CRM и интеграции, чтобы освободить команду от рутины", "price_range": [50000, 500000], "icon": "zap" },
+      { "title": "Юридическое сопровождение", "desc": "Договоры, претензии и защита интересов компании на абонементе", "price_range": [15000, 120000], "icon": "shield" },
+      { "title": "Маркетинг и привлечение клиентов", "desc": "Настраиваем рекламу и воронки с прозрачной отчётностью по заявкам", "price_range": [40000, 300000], "icon": "users" },
+      { "title": "Консалтинг и аудит", "desc": "Анализируем процессы и находим точки роста выручки и прибыли", "price_range": [60000, 400000], "icon": "award" },
+      { "title": "Кадровый аутсорсинг", "desc": "Подбор персонала и ведение кадрового делопроизводства", "price_range": [20000, 150000], "icon": "check" }
+    ],
+    "roles": ["Управляющий партнёр", "Руководитель проектов", "Ведущий бухгалтер", "Бизнес-аналитик", "Менеджер по работе с клиентами", "Юрист по корпоративному праву"],
+    "review_snippets": [
+      "Передали бухгалтерию на аутсорс и сэкономили на штате, при этом отчётность всегда вовремя и без штрафов. Рекомендуем партнёрам.",
+      "Внедрили CRM, теперь ни одна заявка не теряется, а отдел продаж видит всю воронку. Выручка выросла за квартал.",
+      "Аудит показал, где мы теряли деньги в процессах. Реализовали рекомендации и заметно подняли маржу.",
+      "Маркетинг приводит стабильный поток заявок, отчёты понятные, каждый рубль рекламы под контролем.",
+      "Юристы ведут наши договоры и претензии на абонементе, сняли с нас головную боль. Реагируют быстро.",
+      "Помогли закрыть несколько вакансий за месяц и навели порядок в кадровых документах. Профессиональная команда."
+    ],
+    "image_prompts": {
+      "hero": "Slavic business consultants in a modern Moscow office reviewing analytics on screens, navy and blue tones, professional mood, no text",
+      "about": "Team of Slavic business professionals in a meeting room collaborating, confident, professional photo, no text",
+      "service": "Slavic analyst presenting dashboards and charts to colleagues, modern office, blue accent light, no text",
+      "portfolio": "Sleek corporate office interior with glass meeting rooms, blue and dark palette, no text"
+    }
+  },
+  "ecommerce": {
+    "label": "Интернет-магазин",
+    "ru_keywords": ["интернет-магазин", "купить онлайн", "доставка товаров", "каталог товаров", "онлайн заказ", "оплата картой"],
+    "tone": "Дружелюбно и удобно, нужный товар найдётся за пару кликов",
+    "sections": ["header", "hero", "trustbar", "services", "features", "about", "portfolio", "pricing", "reviews", "faq", "cta", "contacts", "footer"],
+    "palette_hint": { "mode": "light", "primary": "#15243B", "accent": "#FF5C39", "bg": "#F6F8FB" },
+    "fonts_hint": { "display": "Montserrat", "body": "Inter" },
+    "service_items": [
+      { "title": "Доставка по России", "desc": "Курьером, в пункты выдачи и постаматы со сроком от одного дня", "price_range": [0, 800], "icon": "truck" },
+      { "title": "Оплата онлайн", "desc": "Картой, через СБП или при получении на ваш выбор", "price_range": [0, 0], "icon": "check" },
+      { "title": "Гарантия и возврат", "desc": "Возврат в течение 14 дней и официальная гарантия на товары", "price_range": [0, 0], "icon": "shield" },
+      { "title": "Программа лояльности", "desc": "Кешбэк баллами и персональные скидки постоянным покупателям", "price_range": [0, 0], "icon": "star" },
+      { "title": "Поддержка покупателей", "desc": "Поможем выбрать товар и оформить заказ в чате и по телефону", "price_range": [0, 0], "icon": "phone" },
+      { "title": "Подарочные сертификаты", "desc": "Электронные сертификаты на любую сумму с моментальной доставкой", "price_range": [1000, 50000], "icon": "sparkle" }
+    ],
+    "roles": ["Руководитель магазина", "Менеджер по закупкам", "Контент-менеджер каталога", "Специалист поддержки", "Логист по доставке", "Маркетолог"],
+    "review_snippets": [
+      "Заказ собрали и отправили в тот же день, посылка пришла раньше срока. Товар полностью соответствует описанию.",
+      "Удобный каталог с понятными фильтрами, нашла нужное за минуту. Оплатила через СБП без проблем.",
+      "Понадобился возврат, оформили без лишних вопросов и быстро вернули деньги. Приятно иметь дело с честным магазином.",
+      "Поддержка помогла выбрать модель под мои задачи, не навязывая дорогое. Чувствуется, что заинтересованы в покупателе.",
+      "Коплю баллы по программе лояльности, уже дважды оплачивала ими часть заказа. Реально работает.",
+      "Брала подарочный сертификат, пришёл на почту сразу после оплаты. Получатель остался доволен выбором."
+    ],
+    "image_prompts": {
+      "hero": "Slavic young woman happily unboxing an online order at home, bright modern interior, orange accent, Moscow apartment, no text",
+      "about": "Team of Slavic e-commerce staff in a modern warehouse and office, friendly, professional photo, no text",
+      "service": "Slavic courier handing a parcel to a customer at the door, clean bright setting, no text",
+      "portfolio": "Neatly packed shipping boxes and products on a clean table, modern e-commerce look, no text"
+    }
+  }
+}

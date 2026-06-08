@@ -1,0 +1,24 @@
+# НИКОГДА не коммитить секреты (но scripts/credentials.py — это код, он коммитится)
+.env
+.env.*
+*.env
+secrets*
+*.key
+*.pem
+*.credentials
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Артефакты сборки демо-сайтов (генерируются скиллом в рабочей папке проекта,
+# а не в репозитории скилла)
+out/
+output/
+dist/
+node_modules/
+.next/
+tmp/
+*.log

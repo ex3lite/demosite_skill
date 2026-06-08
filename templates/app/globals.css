@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   ДИЗАЙН-ТОКЕНЫ → Tailwind v4 утилиты.
+   Значения проброшены из site.design через CSS-переменные в layout.tsx.
+   Утилиты: bg-bg, bg-surface, text-text, text-muted, bg-primary,
+   text-primary-fg, text-accent, border-border, font-display, font-body.
+   ========================================================================== */
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-text: var(--c-text);
+  --color-muted: var(--c-muted);
+  --color-primary: var(--c-primary);
+  --color-primary-fg: var(--c-primary-fg);
+  --color-accent: var(--c-accent);
+  --color-accent-fg: var(--c-accent-fg);
+  --color-border: var(--c-border);
+  --color-ring: var(--c-ring);
+  --font-display: var(--c-font-display);
+  --font-body: var(--c-font-body);
+
+  /* easing-кривые (Emil Kowalski): сильнее встроенных CSS */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+:root {
+  --c-bg: #FBFAF7;
+  --c-surface: #FFFFFF;
+  --c-text: #0F172A;
+  --c-muted: #475569;
+  --c-primary: #0B3D2E;
+  --c-primary-fg: #FFFFFF;
+  --c-accent: #C8A24B;
+  --c-accent-fg: #0B0B0C;
+  --c-border: #E7E2D8;
+  --c-ring: #0B3D2E;
+  --c-font-display: ui-serif, Georgia, "Times New Roman", serif;
+  --c-font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --radius: 1rem;
+  --shadow-card: 0 12px 40px -12px rgba(15, 23, 42, 0.18);
+  /* масштаб вертикального ритма — варьируется движком вариативности */
+  --section-y: 7rem;
+  --container-max: 72rem;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.01em; }
+  ::selection { background: var(--color-accent); color: var(--color-accent-fg); }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; border-radius: 4px; }
+  /* отклик нажатия на любую кнопку/ссылку-кнопку */
+  button, a, [role="button"] { -webkit-tap-highlight-color: transparent; }
+}
+
+/* ============================================================================
+   АНИМАЦИИ
+   ========================================================================== */
+@keyframes ds-reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes ds-reveal-blur { from { opacity: 0; transform: translateY(18px); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes ds-scale-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes ds-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ds-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes ds-shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes ds-spin { to { transform: rotate(360deg); } }
+@keyframes ds-fade-out { to { opacity: 0; visibility: hidden; } }
+
+/* появление при скролле (через JS-класс is-in) */
+.ds-reveal { opacity: 0; }
+.ds-reveal.is-in { animation: ds-reveal 0.7s var(--ease-out) both; }
+.ds-reveal-blur { opacity: 0; }
+.ds-reveal-blur.is-in { animation: ds-reveal-blur 0.8s var(--ease-out) both; }
+.ds-scale.is-in { animation: ds-scale-in 0.6s var(--ease-out) both; }
+/* stagger: задержка по --i (индекс) */
+.ds-stagger > * { opacity: 0; }
+.ds-stagger.is-in > * { animation: ds-reveal 0.6s var(--ease-out) both; }
+.ds-stagger.is-in > *:nth-child(1) { animation-delay: 0ms; }
+.ds-stagger.is-in > *:nth-child(2) { animation-delay: 60ms; }
+.ds-stagger.is-in > *:nth-child(3) { animation-delay: 120ms; }
+.ds-stagger.is-in > *:nth-child(4) { animation-delay: 180ms; }
+.ds-stagger.is-in > *:nth-child(5) { animation-delay: 240ms; }
+.ds-stagger.is-in > *:nth-child(6) { animation-delay: 300ms; }
+.ds-stagger.is-in > *:nth-child(7) { animation-delay: 360ms; }
+.ds-stagger.is-in > *:nth-child(8) { animation-delay: 420ms; }
+
+.ds-marquee { animation: ds-marquee var(--marquee-duration, 32s) linear infinite; }
+.ds-marquee-track:hover .ds-marquee { animation-play-state: paused; }
+.ds-float { animation: ds-float 6s ease-in-out infinite; }
+
+/* skeleton-шиммер для лоадеров контента */
+.ds-skeleton {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-muted) 12%, transparent) 25%,
+    color-mix(in srgb, var(--color-muted) 22%, transparent) 37%,
+    color-mix(in srgb, var(--color-muted) 12%, transparent) 63%);
+  background-size: 200% 100%;
+  animation: ds-shimmer 1.4s ease-in-out infinite;
+}
+
+/* спиннер */
+.ds-spinner { animation: ds-spin 0.7s linear infinite; }
+
+/* ============================================================================
+   PRELOADER (брендовый экран загрузки, скрывается после mount)
+   ========================================================================== */
+.ds-preloader {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; place-items: center;
+  background: var(--color-bg);
+  transition: opacity 0.5s var(--ease-out), visibility 0.5s;
+}
+.ds-preloader[data-hidden="true"] { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* ============================================================================
+   ДОСТУПНОСТЬ: уменьшенное движение — оставляем opacity, убираем перемещение
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ds-reveal, .ds-reveal-blur, .ds-stagger > * { opacity: 1 !important; }
+  .ds-float, .ds-marquee { animation: none !important; }
+}
+
+/* hover-эффекты только для устройств с настоящим ховером */
+@media (hover: hover) and (pointer: fine) {
+  .ds-hover-lift { transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out); }
+  .ds-hover-lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+}
