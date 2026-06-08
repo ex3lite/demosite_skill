@@ -78,6 +78,10 @@ def main(argv=None):
         f"appealing and trustworthy, suitable for a Russian business website. "
         f"No text, no letters, no watermark, no realistic photo, no harsh shadows."
     )
+    # OpenAI — ТОЛЬКО для картинок
+    if not str(a.model).startswith(("gpt-image", "dall-e")):
+        print(f"Error: '{a.model}' не image-модель. Маскот генерится только image-моделью.", file=sys.stderr)
+        return 2
     out = Path(a.out).with_suffix(".png")
     out.parent.mkdir(parents=True, exist_ok=True)
     try:

@@ -38,6 +38,19 @@ ALLOWED_SIZES = {"1024x1024", "1536x1024", "1024x1536", "auto"}
 ALLOWED_QUALITY = {"low", "medium", "high", "auto"}
 DEFAULT_MODEL = os.environ.get("DEMOSITE_IMAGE_MODEL", "gpt-image-1.5")
 
+# ЖЁСТКОЕ ПРАВИЛО: OpenAI используется ТОЛЬКО для генерации изображений.
+# Никаких chat/responses/text-вызовов. Любая попытка взять не-image модель — ошибка.
+IMAGE_MODEL_PREFIXES = ("gpt-image", "dall-e")
+
+
+def assert_image_model(model: str) -> None:
+    if not str(model).startswith(IMAGE_MODEL_PREFIXES):
+        raise SystemExit(
+            f"Error: '{model}' — не image-модель. demosite обращается к OpenAI ИСКЛЮЧИТЕЛЬНО "
+            "для генерации картинок (gpt-image*/dall-e*) через images.generate/images.edit. "
+            "Никакого текста/чата через OpenAI — весь копирайт делает Claude."
+        )
+
 # Ключ НЕ хранится в скилле. Порядок поиска: переменная окружения →
 # ~/.config/demosite/.env (chmod 600, вне репозитория). Скилл предлагает
 # записать ключ туда через scripts/credentials.py.
@@ -169,6 +182,7 @@ def _save_b64(b64: str, path: Path):
 
 
 def generate_one(client, job: dict, out_dir: Path, model: str, retries: int = 3) -> dict:
+    assert_image_model(model)
     slug = job["slug"]
     size = job.get("size", "1536x1024")
     if size not in ALLOWED_SIZES:
@@ -213,6 +227,7 @@ def generate_one(client, job: dict, out_dir: Path, model: str, retries: int = 3)
 
 
 def edit_image(image_path: str, prompt: str, out: str, model: str, fidelity: str = "high"):
+    assert_image_model(model)
     client = _client()
     with open(image_path, "rb") as f:
         res = client.images.edit(model=model, image=f, prompt=prompt, input_fidelity=fidelity, n=1)
@@ -247,6 +262,7 @@ def run_manifest(manifest_path: str, out_dir: str, model: str, concurrency: int,
 
     results = []
     if use_ai:
+        assert_image_model(model)  # OpenAI — только image-модели, падаем рано
         print(f"Генерация {len(jobs)} изображений через {model} (OPENAI_API_KEY найден)…")
         client = _client()
         with cf.ThreadPoolExecutor(max_workers=max(1, concurrency)) as ex:

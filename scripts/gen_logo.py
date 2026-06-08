@@ -66,6 +66,10 @@ def gen_ai_logo(name, industry, primary, accent, out: Path, favicon: Path | None
         f"centered, app-icon style, bold and legible at small size, high contrast, "
         f"no gradient mesh, no 3D, no realistic detail, no photo, no shadow, no watermark, no text."
     )
+    # OpenAI — ТОЛЬКО для картинок: запрещаем не-image модель
+    if not str(AI_LOGO_MODEL).startswith(("gpt-image", "dall-e")):
+        print(f"Warning: '{AI_LOGO_MODEL}' не image-модель — фолбэк на SVG", file=sys.stderr)
+        return False
     try:
         client = OpenAI()
         res = client.images.generate(model=AI_LOGO_MODEL, prompt=prompt, size="1024x1024",

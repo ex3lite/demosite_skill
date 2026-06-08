@@ -280,3 +280,31 @@ services: cards|list|bento · features: grid|split-image|rows · about: split|st
 process: stepper|vertical|cards · portfolio: grid|masonry|overlay · pricing: cards|table|highlight ·
 team: grid|cards|row · reviews: grid|slider|feature · faq: accordion|two-col|bordered ·
 cta: band|split|card · contacts: split-map|map-top|cards. Неизвестный вариант → первый (fallback).
+
+### 7.8 OpenAI — ТОЛЬКО генерация изображений
+Ключ OpenAI применяется ИСКЛЮЧИТЕЛЬНО к эндпоинтам изображений
+(`client.images.generate` / `client.images.edit`, модели `gpt-image*` / `dall-e*`):
+- картинки секций (hero/about/services/portfolio/team/og) — `gen_images.py`;
+- логотип — `gen_logo.py --ai` (`gpt-image-1-mini`);
+- маскот — `gen_mascot.py`.
+
+НИКАКИХ `chat.completions` / `responses.create` / текстовых вызовов через OpenAI. Весь
+текст/копирайт/данные генерирует Claude и скрипты (`ru_data.py`, `assemble_site.py`). Скрипты
+содержат guard `assert_image_model()` — при не-image модели падают с ошибкой/фолбэком.
+
+Дашборд OpenAI: модели `gpt-image-1.5`/`gpt-image-1-mini` — токенные, поэтому отображаются в бакете
+«Responses and Chat Completions» (input-токены = текст промпта), а бакет «Images» (легаси DALL·E)
+остаётся пустым. Это нормальная картина генерации изображений, а не текстовый чат.
+
+### 7.9 Картинки — часть статики (для nginx)
+Все изображения проекта лежат в `public/images/` и отдаются по пути `/images/*`. В статическом
+экспорте (`DEMOSITE_EXPORT=1 next build`) они копируются в `out/images/*` БЕЗ изменений. Значит
+`/images/` — обычная статика, которую nginx раздаёт напрямую:
+```nginx
+# вся статика сайта — из out/
+location / { root /var/www/<site>/out; try_files $uri $uri/ /index.html; }
+# при желании отдать картинки отдельным правилом (кэш):
+location /images/ { root /var/www/<site>/out; expires 30d; access_log off; }
+```
+Логотип (`/images/logo.png|svg`), favicon (берётся из `site.images.logo`) и маскот
+(`/images/mascot.png`) — там же. Внешние ресурсы сайта: только Google Fonts и тайлы OSM-карты.
