@@ -64,18 +64,19 @@ python3 scripts/variation_engine.py --domain <dom> --description "<text>" --indu
 → `design` (палитра/режим/шрифты/радиус/тень/ширина/ритм) + `variation` (preloader/animation/
 heroVariant/sectionVariants) + `sections_order`. Это основа `site.json`. (Подробнее — `references/anti-fingerprint.md`.)
 
-**3. Бренд, логотип, маскот.** Слоган по `references/brand-system.md`. Логотип — простой символ
-через слабую модель `gpt-image-1-mini` (ставится в шапку И favicon); без ключа — фолбэк на SVG:
+**3. Бренд, логотип, маскот.** Слоган по `references/brand-system.md`. Логотип — НАСТОЯЩИЙ символ
+через `gpt-image-1-mini` (`--ai` обязателен; это и логотип, и favicon — favicon берётся из логотипа
+автоматически). Картинки кладём в **`assets/images/`** (не public — см. §0). Без ключа — SVG-фолбэк.
 ```bash
 $PYIMG scripts/gen_logo.py --ai --name "<Бренд>" --industry <slug> --primary <hex> --accent <hex> \
-   --seed <seed> --out <project>/public/images/logo.png --favicon <project>/public/icon.png
+   --seed <seed> --out <project>/assets/images/logo.png
 ```
-Если описание подразумевает **детский/семейный/игровой** контекст (например «детская стоматология»,
-«детский центр», «семейное кафе») — сгенерируй МАСКОТ и используй его как визуал hero:
+Маскот (только если описание про **детский/семейный/игровой** контекст — «детская стоматология»,
+«детский центр», «семейное кафе»):
 ```bash
-$PYIMG scripts/gen_mascot.py --name "<Бренд>" --industry <slug> --theme "<описание персонажа>" \
-   --primary <hex> --accent <hex> --out <project>/public/images/mascot.png
-# затем в site.json: секции hero проставь "image":"mascot"
+$PYIMG scripts/gen_mascot.py --name "<Бренд>" --industry <slug> --theme "<описание>" \
+   --primary <hex> --accent <hex> --out <project>/assets/images/mascot.png
+# затем в site.json hero: "image":"mascot"
 ```
 
 **4. Данные (RU).** Реквизиты + контент:
@@ -85,10 +86,17 @@ python3 scripts/ru_data.py --industry <slug> --city "<Город|Москва>" 
 ```
 Тексты секций — по `references/copywriting.md` (живой РУ-копирайт, без слопа, без слов «демо»).
 
-**5. Картинки.** На каждую секцию-визуал — арт-дирекшн-промпт по `references/art-direction.md`
-(люди — славянская внешность, контекст Москвы/РФ, без текста на фото). Собери `images.json` и:
+**5. Картинки (ЭКОНОМНО).** Промпты по `references/art-direction.md` (славянская внешность, РФ,
+без текста). **Контроль стоимости:** мало картинок (hero/about/og + 1-2; команду/портфолио чаще
+оставляй на инициалы/градиент), `quality:"low"|"medium"`, модель по умолчанию `gpt-image-1-mini`,
+дорогую `gpt-image-1.5` — точечно (поле `model` у конкретной job, обычно только hero). Кладём в
+`assets/images/`:
 ```bash
-$PYIMG scripts/gen_images.py --manifest images.json --out-dir <project>/public/images --concurrency 4
+$PYIMG scripts/gen_images.py --manifest images.json --out-dir <project>/assets/images --concurrency 4
+```
+**5b. Импорт картинок в бандл.** Чтобы изображения ехали как статика `_next` (а не `/images/`):
+```bash
+python3 scripts/gen_image_imports.py <project>   # генерит lib/images.ts (импорты из assets/images)
 ```
 
 **6. Скаффолд и сборка site.json.** Создай проект и собери ЕДИНЫЙ источник правды:
@@ -136,10 +144,11 @@ bash scripts/publish.sh --project <project> --repo <owner/repo> [--visibility pr
   Скрипты `gen_images.py`/`gen_logo.py`/`gen_mascot.py` физически отказываются от не-image моделей.
   Примечание: в дашборде OpenAI `gpt-image-1.5`/`-mini` биллятся в бакете «Responses and Chat
   Completions» (промпт = input-токены) — это и есть генерация картинок, не текстовый чат.
-- **Картинки — часть статики.** Все изображения лежат в `public/images/` → отдаются по `/images/*`
-  → попадают в статический экспорт `out/images/*` БЕЗ изменений. nginx может раздавать `/images/`
-  как статику (`location /images/ { root /var/www/site/out; }`). Логотип/иконка/маскот — там же.
-  Сайт ничего не подгружает с внешних доменов, кроме Google Fonts и тайлов OSM-карты.
+- **ВСЯ статика — из `_next/static`.** Изображения лежат в `assets/images/` и импортируются как
+  модули (`lib/images.ts` через `gen_image_imports.py`), поэтому бандлер кладёт их в
+  `/_next/static/media/*` — как и JS/CSS. Никакого отдельного `/images/`. Логотип, favicon и
+  маскот — тоже из бандла. Один статик-путь для монтирования. НЕ клади картинки в `public/`.
+  Внешние ресурсы — только Google Fonts и тайлы OSM-карты.
 - **Не индексировать.** Сайты не должны попадать в поиск: `seo.noindex=true` (по умолчанию) →
   meta `noindex,nofollow` + заголовок `X-Robots-Tag` (в next.config). Не убирай это.
 - **Картинки:** один визуал на секцию, единая палитра, без текста/логотипов на фото, люди —
@@ -168,7 +177,8 @@ bash scripts/publish.sh --project <project> --repo <owner/repo> [--visibility pr
 | `scripts/variation_engine.py` | Движок вариативности (design+variation+order по seed) |
 | `scripts/ru_data.py` | RU-реквизиты и контент (валидные контрольные суммы; `--selftest`) |
 | `scripts/gen_images.py` | Батч gpt-image-1.5 + SVG-fallback |
-| `scripts/gen_logo.py` | Рукописный SVG-логотип (стили по seed) |
+| `scripts/gen_logo.py` | Логотип: `--ai` (gpt-image-1-mini) или SVG-фолбэк |
+| `scripts/gen_image_imports.py` | Генерит `lib/images.ts` (импорт картинок → бандл `_next/static`) |
 | `scripts/credentials.py` | Ключ вне репозитория |
 | `scripts/scaffold.sh` | Детерминированный скаффолд Next.js |
 | `scripts/publish.sh` | Исходники → GitHub-репо + статический билд → GitHub Releases (через gh) |

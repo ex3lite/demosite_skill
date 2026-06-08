@@ -1,12 +1,16 @@
 import data from "@/data/site.json";
+import { IMAGES } from "./images";
 import type { Site, Img } from "./types";
 
 export const site = data as unknown as Site;
 
-/** Путь к картинке по slug с безопасным фолбэком. */
+/** Путь к картинке по slug. Источник — БАНДЛ (lib/images.ts → /_next/static/media/*),
+ *  поэтому изображения едут как статика _next, а не из public/images. */
 export function img(slug?: string): Img | undefined {
   if (!slug) return undefined;
-  return site.images?.[slug] ?? (slug.startsWith("/") ? slug : undefined);
+  if (IMAGES[slug]) return IMAGES[slug];
+  if (slug.startsWith("/") || slug.startsWith("http")) return slug;
+  return undefined;
 }
 
 /** Форматирование числа в рублях: 12000 → "12 000 ₽". */

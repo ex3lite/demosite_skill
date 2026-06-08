@@ -228,22 +228,9 @@ def main(argv=None):
     a = ap.parse_args(argv)
 
     design = load(a.design); ru = load(a.data); preset = load(a.preset) or {}
-    images_lock = load(a.images)
-    images_map = {}
-    if images_lock and isinstance(images_lock, dict):
-        for r in images_lock.get("results", []):
-            ext = Path(r.get("raster") or r.get("path", "")).name
-            images_map[r["slug"]] = "/images/" + ext
-    # сканируем папку картинок на фактический логотип/маскот/иконку (генерятся отдельно)
-    if a.images:
-        imgdir = Path(a.images).parent
-        for slug, names in [("logo", ["logo.png", "logo.svg"]),
-                            ("mascot", ["mascot.png", "mascot.webp"]),
-                            ("icon", ["icon.png", "icon.svg"])]:
-            for nm in names:
-                if (imgdir / nm).is_file():
-                    images_map[slug] = "/images/" + nm
-                    break
+    # Картинки резолвятся в рантайме через бандл (lib/images.ts → /_next/static/media),
+    # поэтому карта путей здесь не нужна — секции ссылаются на слаги (hero/about/og/mascot/...).
+    pass
 
     brand = design["brand"]["name"]
     domain = design["brand"]["domain"]
@@ -253,11 +240,6 @@ def main(argv=None):
     label = preset.get("label") or "Услуги для бизнеса"
     tone = preset.get("tone", "")
     order = design["sections_order"]
-
-    images = assign_images(order, images_map)
-    # дефолтные пути, если gen_images ещё не отработал
-    for slugname, ext in [("hero", "webp"), ("about", "webp"), ("og", "webp")]:
-        images.setdefault(slugname, f"/images/{slugname}.{ext}")
 
     site = {
         "brand": {
@@ -278,7 +260,7 @@ def main(argv=None):
         "stats": ru["stats"],
         "nav": build_nav(order),
         "cta": {"primary": {"label": "Оставить заявку", "href": "#contacts"}, "phoneLabel": "Перезвоните мне"},
-        "images": images,
+        "images": {},  # резолв через бандл lib/images.ts (см. gen_image_imports.py)
         "legal": {"copyright": company.get("legal_name", brand)},
         "sections": build_sections(order, ru, preset, brand, city, label, tone),
     }

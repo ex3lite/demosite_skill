@@ -182,6 +182,7 @@ def _save_b64(b64: str, path: Path):
 
 
 def generate_one(client, job: dict, out_dir: Path, model: str, retries: int = 3) -> dict:
+    model = job.get("model", model)   # можно задать модель ПОФАЙЛОВО (экономия: дорогая только на hero)
     assert_image_model(model)
     slug = job["slug"]
     size = job.get("size", "1536x1024")

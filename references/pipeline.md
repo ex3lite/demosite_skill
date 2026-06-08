@@ -22,13 +22,14 @@
 │   └── ui/               # примитивы: Button, Section, Container, Icon, Reveal, Rating…
 ├── lib/
 │   ├── types.ts          # ТИПЫ из этого файла (копируются 1:1)
-│   └── site.ts           # import site from data/site.json + типизация
+│   ├── site.ts           # import site + img() (резолв через bundle)
+│   └── images.ts         # АВТОГЕН: импорты картинок → /_next/static/media
 ├── data/
 │   ├── site.json         # ← главный контракт (ниже)
 │   └── ru.json           # сырой вывод ru_data.py (для трассируемости)
-└── public/
-    ├── images/           # вывод gen_images.py (+ images.lock.json)
-    └── favicon/og/…
+├── assets/
+│   └── images/           # картинки/логотип/маскот → бандлятся в /_next/static/media
+└── (public/ не используется для картинок)
 ```
 
 Стек (пинить версии в scaffold.sh): **Next.js 15 (App Router) + React 19 + Tailwind CSS v4 +
@@ -296,15 +297,21 @@ cta: band|split|card · contacts: split-map|map-top|cards. Неизвестны�
 «Responses and Chat Completions» (input-токены = текст промпта), а бакет «Images» (легаси DALL·E)
 остаётся пустым. Это нормальная картина генерации изображений, а не текстовый чат.
 
-### 7.9 Картинки — часть статики (для nginx)
-Все изображения проекта лежат в `public/images/` и отдаются по пути `/images/*`. В статическом
-экспорте (`DEMOSITE_EXPORT=1 next build`) они копируются в `out/images/*` БЕЗ изменений. Значит
-`/images/` — обычная статика, которую nginx раздаёт напрямую:
+### 7.9 ВСЯ статика — из `/_next/static` (картинки тоже)
+Изображения НЕ лежат в `public/`. Они лежат в `assets/images/` и импортируются как модули в
+`lib/images.ts` (генерит `scripts/gen_image_imports.py`). Бандлер обрабатывает импорты и кладёт
+файлы в `/_next/static/media/<имя>.<hash>.<ext>` — ровно туда же, где JS/CSS. Значит:
+- `img(slug)` (lib/site.ts) возвращает URL вида `/_next/static/media/hero.abcd1234.webp`;
+- логотип, favicon (`<link rel=icon>` = `img("logo")`), маскот — тоже из `_next/static`;
+- НЕТ отдельного `/images/` пути.
+
+Порядок: генерим картинки/логотип/маскот в `assets/images/` → `gen_image_imports.py <project>` →
+`npm run build`. Слаг = имя файла без расширения (`hero.webp` → `"hero"`).
+
+В статическом экспорте всё лежит под `out/` (`out/index.html` + `out/_next/static/...`). nginx:
 ```nginx
-# вся статика сайта — из out/
 location / { root /var/www/<site>/out; try_files $uri $uri/ /index.html; }
-# при желании отдать картинки отдельным правилом (кэш):
-location /images/ { root /var/www/<site>/out; expires 30d; access_log off; }
+# вся статика (включая картинки) под одним префиксом — удобно кэшировать/выносить на CDN:
+location /_next/static/ { root /var/www/<site>/out; expires 365d; access_log off; immutable; }
 ```
-Логотип (`/images/logo.png|svg`), favicon (берётся из `site.images.logo`) и маскот
-(`/images/mascot.png`) — там же. Внешние ресурсы сайта: только Google Fonts и тайлы OSM-карты.
+Внешние ресурсы сайта: только Google Fonts и тайлы OSM-карты.

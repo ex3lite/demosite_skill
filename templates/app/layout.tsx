@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { site } from "@/lib/site";
+import { site, img } from "@/lib/site";
 import { Preloader } from "@/components/ui/Preloader";
 import { SiteClient } from "@/components/ui/SiteClient";
 
 // ── SEO из site.seo (статично на этапе сборки) ───────────────────────────────
-const ogImage = site.images?.[site.seo.ogImageSlug] ?? site.images?.og;
+const ogImage = img(site.seo.ogImageSlug) ?? img("og");
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.brand.domain}`),
   title: site.seo.title,
@@ -91,8 +91,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href={fontsHref()} />
         {(() => {
-          const ic = site.images?.logo || "/icon.svg";
-          const type = ic.endsWith(".svg") ? "image/svg+xml" : ic.endsWith(".png") ? "image/png" : undefined;
+          const ic = img("logo");           // фавикон = логотип из бандла (/_next/static/media)
+          if (!ic) return null;
+          const type = ic.includes(".svg") ? "image/svg+xml" : ic.includes(".png") ? "image/png" : undefined;
           return (<>
             <link rel="icon" href={ic} {...(type ? { type } : {})} />
             <link rel="apple-touch-icon" href={ic} />

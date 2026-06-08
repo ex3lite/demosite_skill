@@ -18,7 +18,8 @@ if [ -z "$SLUG" ]; then
 fi
 [ -z "$SLUG" ] && SLUG="demosite-app"
 
-mkdir -p "$PROJ/data" "$PROJ/public/images"
+# Картинки лежат в assets/images (бандлятся в /_next/static/media), а не в public/.
+mkdir -p "$PROJ/data" "$PROJ/assets/images"
 cp -R "$T/app" "$T/components" "$T/lib" "$PROJ/"
 cp "$T/package.json" "$T/next.config.mjs" "$T/tsconfig.json" "$T/postcss.config.mjs" "$PROJ/"
 
