@@ -234,6 +234,16 @@ def main(argv=None):
         for r in images_lock.get("results", []):
             ext = Path(r.get("raster") or r.get("path", "")).name
             images_map[r["slug"]] = "/images/" + ext
+    # сканируем папку картинок на фактический логотип/маскот/иконку (генерятся отдельно)
+    if a.images:
+        imgdir = Path(a.images).parent
+        for slug, names in [("logo", ["logo.png", "logo.svg"]),
+                            ("mascot", ["mascot.png", "mascot.webp"]),
+                            ("icon", ["icon.png", "icon.svg"])]:
+            for nm in names:
+                if (imgdir / nm).is_file():
+                    images_map[slug] = "/images/" + nm
+                    break
 
     brand = design["brand"]["name"]
     domain = design["brand"]["domain"]

@@ -78,10 +78,12 @@ SECTION_Y = ["clamp(3.5rem,8vw,6rem)", "clamp(4rem,9vw,7rem)", "clamp(4.5rem,10v
 CONTAINER = ["64rem", "68rem", "72rem", "76rem", "80rem"]
 ANIM = ["subtle", "editorial", "energetic"]
 PRELOADER = ["spinner", "bar", "dots"]
-HERO = ["split-left", "split-right", "bg-image", "centered"]
+HERO = ["split-left", "split-right", "bg-image", "centered", "editorial"]
+HEADER = ["classic", "centered", "split", "minimal", "floating", "topbar"]
 
 # Ключи вариантов СОВПАДАЮТ с тем, что реализовано в компонентах (templates/components/sections).
 SECTION_VARIANTS = {
+    "header":    HEADER,
     "hero":      HERO,
     "trustbar":  ["row", "marquee", "stat-strip"],
     "services":  ["cards", "list", "bento"],

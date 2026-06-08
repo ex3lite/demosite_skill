@@ -90,8 +90,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href={fontsHref()} />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/icon.svg" />
+        {(() => {
+          const ic = site.images?.logo || "/icon.svg";
+          const type = ic.endsWith(".svg") ? "image/svg+xml" : ic.endsWith(".png") ? "image/png" : undefined;
+          return (<>
+            <link rel="icon" href={ic} {...(type ? { type } : {})} />
+            <link rel="apple-touch-icon" href={ic} />
+          </>);
+        })()}
         <meta name="theme-color" content={site.design.palette.primary} />
       </head>
       <body>

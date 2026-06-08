@@ -1,4 +1,4 @@
-import { site, img } from "@/lib/site";
+import { site, img, variantOf } from "@/lib/site";
 import type { Section } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -6,7 +6,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 
 export default function Hero({ data }: { data: Section }) {
-  const variant: string = data.variant ?? "split-left";
+  const variant: string = data.variant ?? variantOf("hero", "split-left");
   const image = img(data.image) ?? img("hero");
   const cta = data.cta ?? site.cta?.primary ?? { label: "Оставить заявку", href: "#contacts" };
   const secondary = data.secondaryCta;
@@ -58,6 +58,35 @@ export default function Hero({ data }: { data: Section }) {
             </Reveal>
           )}
         </Container>
+      </section>
+    );
+  }
+
+  // ── Вариант editorial: крупная типографика + широкая cinematic-полоса ───────
+  if (variant === "editorial") {
+    return (
+      <section id={data.id} className="relative overflow-hidden pt-28 pb-0 sm:pt-32">
+        <Container>
+          <Reveal className="max-w-4xl">
+            {data.eyebrow && <p className="mb-5 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-accent">
+              <span className="h-px w-10 bg-accent" />{data.eyebrow}</p>}
+            <h1 className="font-display text-5xl sm:text-7xl lg:text-[5.5rem] font-semibold leading-[0.98] tracking-tight">{data.title}</h1>
+            <div className="mt-7 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              {data.subtitle && <p className="max-w-md text-lg text-muted leading-relaxed">{data.subtitle}</p>}
+              <Button href={cta.href} variant="primary" size="lg" iconRight="arrowRight" className="shrink-0">{cta.label}</Button>
+            </div>
+          </Reveal>
+        </Container>
+        <Reveal delay={120} className="mt-14">
+          {image ? (
+            <div className="relative h-[42vh] min-h-[320px] w-full overflow-hidden sm:h-[52vh]">
+              <img src={image} alt="" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            </div>
+          ) : (
+            <div className="h-[40vh] min-h-[300px] w-full bg-gradient-to-r from-primary/15 via-primary/10 to-accent/15" />
+          )}
+        </Reveal>
       </section>
     );
   }

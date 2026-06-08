@@ -274,7 +274,8 @@ python3 scripts/variation_engine.py --domain <dom> --description "<text>" --indu
   опционально для интерактивных переключений (таб/слайдер), с graceful degradation.
 
 ### 7.7 Реализованные варианты секций (ключи = пул движка)
-hero: split-left|split-right|bg-image|centered · trustbar: row|marquee|stat-strip ·
+header: classic|centered|split|minimal|floating|topbar (КРИТИЧНО — шапки не должны совпадать) ·
+hero: split-left|split-right|bg-image|centered|editorial ·  trustbar: row|marquee|stat-strip ·
 services: cards|list|bento · features: grid|split-image|rows · about: split|stacked|side-stats ·
 process: stepper|vertical|cards · portfolio: grid|masonry|overlay · pricing: cards|table|highlight ·
 team: grid|cards|row · reviews: grid|slider|feature · faq: accordion|two-col|bordered ·

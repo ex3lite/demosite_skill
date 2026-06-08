@@ -14,10 +14,75 @@ CLI:
 viewBox 0 0 64 64, без width/height (размер задаёт CSS). Использует initials бренда.
 """
 from __future__ import annotations
-import argparse, hashlib, sys
+import argparse, base64, hashlib, os, sys
 from pathlib import Path
 
 STYLES = ["circle", "rounded", "outline", "split", "hexagon", "ring", "bars", "shield"]
+
+# слабая (дешёвая) модель для простого логотипа — по просьбе: «слабая модель chatgpt»
+AI_LOGO_MODEL = os.environ.get("DEMOSITE_LOGO_MODEL", "gpt-image-1-mini")
+CRED_FILE = Path(os.environ.get("DEMOSITE_ENV_FILE", Path.home() / ".config" / "demosite" / ".env"))
+
+
+def _load_local_env():
+    try:
+        if CRED_FILE.is_file():
+            for line in CRED_FILE.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, val = line.split("=", 1)
+                    os.environ.setdefault(k.strip(), val.strip())
+    except Exception:
+        pass
+
+
+_INDUSTRY_SYMBOL = {
+    "dental": "a single tooth or a gentle smile arc", "clinic": "a medical cross or pulse line",
+    "restaurant": "a fork and spoon or a flame", "law": "scales of justice or a column",
+    "construction": "a building block, crane or roof shape", "beauty": "a petal, leaf or drop",
+    "autoservice": "a gear or wrench", "logistics": "an arrow, truck or route line",
+    "realestate": "a house or key", "fitness": "a dumbbell or dynamic stroke",
+    "education": "an open book or graduation cap", "b2b": "an abstract geometric mark",
+    "ecommerce": "a shopping bag or tag",
+}
+
+
+def gen_ai_logo(name, industry, primary, accent, out: Path, favicon: Path | None) -> bool:
+    """Генерирует простой логотип-символ через gpt-image-1-mini (прозрачный PNG).
+    Возвращает True при успехе, иначе False (нужен фолбэк на SVG)."""
+    _load_local_env()
+    if not os.environ.get("OPENAI_API_KEY"):
+        return False
+    try:
+        from openai import OpenAI
+    except ImportError:
+        print("Warning: пакет openai не установлен — фолбэк на SVG-логотип", file=sys.stderr)
+        return False
+    sym = _INDUSTRY_SYMBOL.get((industry or "").lower(), "a clean abstract geometric mark")
+    prompt = (
+        f"A simple minimalist flat vector LOGO ICON (symbol only, NO text, NO letters, NO words) "
+        f"for a {industry or 'service'} business. The icon is {sym}. "
+        f"Single clean geometric symbol, two solid colors {primary} and {accent}, fully transparent background, "
+        f"centered, app-icon style, bold and legible at small size, high contrast, "
+        f"no gradient mesh, no 3D, no realistic detail, no photo, no shadow, no watermark, no text."
+    )
+    try:
+        client = OpenAI()
+        res = client.images.generate(model=AI_LOGO_MODEL, prompt=prompt, size="1024x1024",
+                                      background="transparent", output_format="png", quality="low", n=1)
+        out = out.with_suffix(".png")
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_bytes(base64.b64decode(res.data[0].b64_json))
+        print(f"Логотип (AI {AI_LOGO_MODEL}): {out}")
+        if favicon:
+            fav = favicon.with_suffix(".png")
+            fav.parent.mkdir(parents=True, exist_ok=True)
+            fav.write_bytes(out.read_bytes())
+            print(f"Favicon: {fav}")
+        return True
+    except Exception as e:  # noqa
+        print(f"Warning: AI-логотип не сгенерирован ({e}) — фолбэк на SVG", file=sys.stderr)
+        return False
 
 
 def _seed(name: str, seed) -> int:
@@ -97,9 +162,17 @@ def main(argv=None):
     ap.add_argument("--seed", default=None)
     ap.add_argument("--style", default="auto", choices=["auto"] + STYLES)
     ap.add_argument("--serif", action="store_true")
+    ap.add_argument("--ai", action="store_true", help="сгенерировать простой логотип через gpt-image-1-mini")
+    ap.add_argument("--industry", default="", help="ниша — для символа AI-логотипа")
     ap.add_argument("--out", required=True)
     ap.add_argument("--favicon", default=None)
     a = ap.parse_args(argv)
+
+    if a.ai:
+        out_p = Path(a.out); fav_p = Path(a.favicon) if a.favicon else None
+        if gen_ai_logo(a.name, a.industry, a.primary, a.accent, out_p, fav_p):
+            return 0
+        # иначе — падаем в SVG-фолбэк ниже
 
     svg = build(a.name, a.primary, a.accent, a.bg, a.seed, a.style, a.serif)
     out = Path(a.out); out.parent.mkdir(parents=True, exist_ok=True)

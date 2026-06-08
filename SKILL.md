@@ -64,10 +64,18 @@ python3 scripts/variation_engine.py --domain <dom> --description "<text>" --indu
 → `design` (палитра/режим/шрифты/радиус/тень/ширина/ритм) + `variation` (preloader/animation/
 heroVariant/sectionVariants) + `sections_order`. Это основа `site.json`. (Подробнее — `references/anti-fingerprint.md`.)
 
-**3. Бренд и логотип.** Слоган по `references/brand-system.md`. Рукописный SVG-логотип:
+**3. Бренд, логотип, маскот.** Слоган по `references/brand-system.md`. Логотип — простой символ
+через слабую модель `gpt-image-1-mini` (ставится в шапку И favicon); без ключа — фолбэк на SVG:
 ```bash
-python3 scripts/gen_logo.py --name "<Бренд>" --primary <hex> --accent <hex> --seed <seed> \
-   --out <project>/public/images/logo.svg --favicon <project>/public/icon.svg
+$PYIMG scripts/gen_logo.py --ai --name "<Бренд>" --industry <slug> --primary <hex> --accent <hex> \
+   --seed <seed> --out <project>/public/images/logo.png --favicon <project>/public/icon.png
+```
+Если описание подразумевает **детский/семейный/игровой** контекст (например «детская стоматология»,
+«детский центр», «семейное кафе») — сгенерируй МАСКОТ и используй его как визуал hero:
+```bash
+$PYIMG scripts/gen_mascot.py --name "<Бренд>" --industry <slug> --theme "<описание персонажа>" \
+   --primary <hex> --accent <hex> --out <project>/public/images/mascot.png
+# затем в site.json: секции hero проставь "image":"mascot"
 ```
 
 **4. Данные (RU).** Реквизиты + контент:
@@ -112,8 +120,13 @@ bash scripts/scaffold.sh <project> "<Бренд>" <slug>
 - **Запрещённые слова НИГДЕ** (вывод, alt, комментарии, имена): демо, demo, placeholder, пример,
   example, тест, заглушка, fake, mock, dummy, sample, lorem, todo.
 - **Реквизиты валидны** (контрольные суммы) и **заполнены**; город по умолчанию **Москва**.
+- **Не индексировать.** Сайты не должны попадать в поиск: `seo.noindex=true` (по умолчанию) →
+  meta `noindex,nofollow` + заголовок `X-Robots-Tag` (в next.config). Не убирай это.
 - **Картинки:** один визуал на секцию, единая палитра, без текста/логотипов на фото, люди —
-  славянская внешность. Логотип — рукописный SVG, не AI-картинка.
+  славянская внешность. Логотип — простой gpt-image-1-mini символ (в шапку и favicon), без текста.
+- **Шапка и hero ОБЯЗАНЫ различаться между сайтами** — это варианты (`header`: classic/centered/
+  split/minimal/floating/topbar; `hero`: split-left/right/bg-image/centered/editorial), выбираемые
+  движком по домену. Не своди их к одному паттерну.
 - **Иконки — SVG** (набор в `ui/Icon`), не эмодзи. Анимации — `transform/opacity`, reduced-motion.
 - **Каждый сайт уникален:** меняй `seed`/домен; не переиспользуй один favicon/og/тексты.
 
